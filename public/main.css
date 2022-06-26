@@ -1,0 +1,4 @@
+input[type=checkbox]:checked + label.lead{
+    text-decoration: line-through;
+    text-decoration-color: #0d6efd;
+}
