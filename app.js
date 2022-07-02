@@ -1,36 +1,22 @@
 const express = require('express')
-const bodyParser  = require('body-parser')
-const date = require(__dirname + '/date.js')
+const Router = require("./router")
 let port = process.env.PORT;
+
+
 if (port == null || port == "") {
   port = 3000;
 }
+
+
 const app = express();
 
-let todoList = [];
+//Mongodb codess
 
 
 
-app.use(express.static("public"))
-app.set('view engine', 'ejs');
-app.use(bodyParser.urlencoded({extended:true}))
+app.use(Router);
 
 
-
-app.get('/', (req,res)=>{
-    
-let day = date.getDate();
-    res.render("index", {listTitle:day, todoList:todoList} );
-
-   })
-
-   app.post("/", (req,res)=>{
-    let newTodo = req.body.newItem;
-    if (newTodo != ""){
-    todoList.unshift(newTodo);
-}
-    res.redirect("/");
-   })
 
 
 app.listen(port, ()=>{
