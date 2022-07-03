@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}))
 
 
-mongoose.connect("mongodb+srv://ghosharnab00:gorugadha.com@cluster0.efnzj.mongodb.net/?retryWrites=true&w=majority",
+mongoose.connect("mongodb+srv://ghosharnab00:gorugadha.com@cluster0.efnzj.mongodb.net/todoDB",
     {
       useNewUrlParser: true
     })
