@@ -1,11 +1,11 @@
+const dotenv = require('dotenv')
 let express = require('express')
 const _ = require('lodash');
 let mongoose = require('mongoose')
 const {todoSchema,listSchema} = require('./todomodel')
-const date = require(__dirname + '/date.js')
 const bodyParser  = require('body-parser')
 const app = express();
-
+dotenv.config();
 //let todoList = [];
 
 
@@ -14,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}))
 
 
-mongoose.connect("mongodb+srv://ghosharnab00:gorugadha.com@cluster0.efnzj.mongodb.net/todoDB",
+mongoose.connect(process.env.DATABASE_URL,
     {
       useNewUrlParser: true
     })
