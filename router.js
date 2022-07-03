@@ -1,4 +1,5 @@
 let express = require('express')
+const _ = require('lodash');
 let mongoose = require('mongoose')
 const {todoSchema,listSchema} = require('./todomodel')
 const date = require(__dirname + '/date.js')
@@ -13,7 +14,7 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.urlencoded({extended:true}))
 
 
-mongoose.connect('mongodb://localhost:27017/todoDB',
+mongoose.connect("mongodb+srv://ghosharnab00:gorugadha.com@cluster0.efnzj.mongodb.net/?retryWrites=true&w=majority",
     {
       useNewUrlParser: true
     })
@@ -44,14 +45,13 @@ app.post("/", async (req,res)=>{
         else{
             Lists.findOne({name:listNamee}, (err, todolist)=>{
                 if(!err){
-                    (todolist.todos).push(todo)
+                    todolist.todos.push(todo)
                     todolist.save();
-               console.log(todolist.todos);
-               // todolist.save();
-                //res.redirect(`/${listNamee}`)
+               
+                res.redirect(`/${listNamee}`)
                 }
                 
-            res.redirect(`/${listNamee}`)
+            
 
             })}
         
@@ -83,7 +83,7 @@ app.post("/delete", (req,res)=>{
 
 
 app.get('/:listName',(req,res)=>{
-    let listName = (req.params.listName);
+    let listName = _.upperFirst(req.params.listName);
     let list = Lists.findOne({name:listName}, (err, todolist)=>{
         //console.log(err);
         if (!todolist){

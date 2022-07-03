@@ -9,7 +9,7 @@ const todoSchema = new mongoose.Schema({
 
 const listSchema = new mongoose.Schema({
   name: String,
-  todos:todoSchema
+  todos:[todoSchema]
 });
 
 module.exports = {todoSchema,listSchema} ;
